@@ -2,12 +2,23 @@
 
 void kernel_main(void){
   uart_init();
-  uart_puts("Welcome to BalOS - Copyright (c) 2026 Gecko. All Rights Reserved.\n");
+  uart_prints("Welcome to BalOS\nCopyright (c) 2026 Gecko. All Rights Reserved.\n");
   while(1)
   {
-    uart_puts(">>> ");
-    char c = uart_getc();
-    uart_putc(c);
-    uart_putc('\n');
+    uart_prints(">>> ");
+    while (1) {
+      char c = uart_inputc();
+      if(c == '\r')
+        break;
+      else if (c == 127)
+      {
+        uart_printc('\b');
+        uart_printc(' ');
+        uart_printc('\b');
+      }
+      
+      uart_printc(c);
+    }
+    uart_printc('\n');
   }
 }

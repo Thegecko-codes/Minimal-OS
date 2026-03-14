@@ -9,23 +9,23 @@ void uart_init(void)
   //nothing to do here...
 }
 
-void uart_putc(char c)
+void uart_printc(char c)
 {
   while(UART_FR & (1 << 5));
   UART_DR = c;
 }
 
-char uart_getc(void)
+char uart_inputc(void)
 {
   while (UART_FR & (1 << 4));
   return (char)(UART_DR & 0xFF);
 }
 
-void uart_puts(char* s)
+void uart_prints(char* s)
 {
   while(*s)
   {
-    uart_putc(*s);
+    uart_printc(*s);
     s++;
   }
 }
