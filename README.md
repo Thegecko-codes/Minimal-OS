@@ -6,3 +6,7 @@
 <hr>
 This is a project that I don't think will come anywhere near to finishing but what's the fun in that? I just wanna start doing this shi. Idgaf if I finish it or not :P
 </p>
+<h3>
+  How to run:-
+  qemu-system-aarch64 -machine virt -cpu cortex-a57 -nographic -kernel kernel.elf (linux)
+</h3>
