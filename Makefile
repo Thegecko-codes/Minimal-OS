@@ -2,12 +2,15 @@ CC = clang
 CFLAGS = --target=aarch64-none-elf -ffreestanding -nostdlib -nostdinc -fno-builtin
 
 SRCS = kernel/main.c kernel/uart.c
-OBJS = boot/boot.o kernel/main.o kernel/uart.o
+OBJS = boot/boot.o boot/vectors.o kernel/main.o kernel/uart.o
 
 all: kernel.img
 
 boot/start.o: boot/boot.S
 	$(CC) $(CFLAGS) -c boot/boot.S -o boot/boot.o
+
+boot/vectors.o: boot/vectors.S
+	$(CC) $(CFLAGS) -c boot/vectors.S -o boot/vectors.o
 
 kernel/main.o: kernel/main.c
 	$(CC) $(CFLAGS) -c kernel/main.c -o kernel/main.o
