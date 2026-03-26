@@ -1,8 +1,8 @@
 CC = clang
 CFLAGS = --target=aarch64-none-elf -ffreestanding -nostdlib -nostdinc -fno-builtin
 
-SRCS = kernel/main.c kernel/uart.c
-OBJS = boot/boot.o boot/vectors.o kernel/main.o kernel/uart.o
+SRCS = kernel/main.c kernel/uart.c kernel/mstring.c
+OBJS = boot/boot.o boot/vectors.o kernel/main.o kernel/uart.o kernel/mstring.o
 
 all: kernel.img
 
@@ -17,6 +17,9 @@ kernel/main.o: kernel/main.c
 
 kernel/uart.o: kernel/uart.c
 	$(CC) $(CFLAGS) -c kernel/uart.c -o kernel/uart.o
+
+kernel/mstring.o: kernel/mstring.c
+	$(CC) $(CFLAGS) -c kernel/mstring.c -o kernel/mstring.o
 
 kernel.elf: $(OBJS)
 	ld.lld -T linker.ld -o kernel.elf $(OBJS)
