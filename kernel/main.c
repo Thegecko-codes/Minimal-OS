@@ -2,7 +2,7 @@
 
 void kernel_main(void){
   uart_init();
-  uart_prints("Welcome to Minimal OS\nCopyright (c) 2026 Gecko. All Rights Reserved.\n!!!JBJC!!!\n");
+  uart_prints("Welcome to Minimal OS\nCopyright (c) 2026 Gecko. All Rights Reserved.\n");
   while(1)
   {
     uart_prints(">>> ");
